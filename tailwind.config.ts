@@ -1,11 +1,12 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
+import { Config } from 'tailwindcss'
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+
+const tailwindConfig = {
   content: ["./app/**/*.{js,ts,jsx,tsx}", "./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
-      sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
+      sans: ['var(--font-geist-sans)'],
+      mono: ['var(--font-geist-mono)'],
     },
     extend: {
       dropShadow: {
@@ -15,4 +16,6 @@ module.exports = {
     },
   },
   plugins: [require("@tailwindcss/forms")],
-};
+} satisfies Config
+
+export default tailwindConfig

@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll } from "@jest/globals";
 import { decrypt, encrypt } from "./encryption";
 import crypto from "node:crypto";
-import { toBase58 } from "../util/base58";
+import { toBase58 } from "../lib/base58";
 
 beforeAll(() => {
   global.crypto = crypto.webcrypto;
