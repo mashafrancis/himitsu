@@ -1,49 +1,63 @@
-import Link from "next/link";
-import { Stats } from "@/components/stats";
-import { Testimonials } from "@/components/testimony";
+import AnnouncementBadge from '@/components/announcement-badge'
+import SectionContainer from '@/components/section-container'
+import { Stats } from '@/components/stats'
+import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+import dynamic from 'next/dynamic'
+import Link from 'next/link'
+
+const HomeHero = dynamic(() => import('@/components/home-hero'))
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-8 pb-8 md:gap-16 md:pb-16 xl:pb-24">
-      <div className="flex flex-col items-center justify-center max-w-3xl px-8 mx-auto mt-8 sm:min-h-screen sm:mt-0 sm:px-0">
-        <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-          <Link
-            href="https://github.com/chronark/envshare"
-            className="text-zinc-400 relative overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-zinc-100/10 hover:ring-zinc-100/30 duration-150"
-          >
-            EnvShare is Open Source on{" "}
-            <span className="font-semibold text-zinc-200">
-              GitHub <span aria-hidden="true">&rarr;</span>
-            </span>
-          </Link>
-        </div>
-        <div>
-          <h1 className="py-4 text-5xl font-bold tracking-tight text-center text-transparent bg-gradient-to-t bg-clip-text from-zinc-100/50 to-white sm:text-7xl">
+    <div className="w-full max-w-full relative mx-auto py-16 lg:py-24 bg-alternative overflow-hidden">
+      <SectionContainer className="!py-0 grid grid-cols-12">
+        <div className="relative grid z-10 col-span-12 gap-8 lg:col-span-5">
+          <AnnouncementBadge
+            url="https://github.com/mashafrancis/himitsu"
+            announcement="EnvShare is now Open Source on GitHub."
+          />
+          <h1 className="h1 text-3xl md:!text-4xl lg:!text-4xl 2xl:!text-6xl tracking-[-.15px]">
             Share Environment Variables Securely
           </h1>
-          <p className="mt-6 leading-5 text-zinc-600 sm:text-center">
-            Your document is encrypted in your browser before being stored for a limited period of time and read
-            operations. Unencrypted data never leaves your browser.
+          <p className="p lg:text-lg text-muted-foreground max-w-lg lg:max-w-none">
+            Your document is encrypted in your browser before being stored for a
+            limited period of time and read operations. Unencrypted data never
+            leaves your browser.
           </p>
-          <div className="flex flex-col justify-center gap-4 mx-auto mt-8 sm:flex-row sm:max-w-lg ">
+
+          <div className="flex flex-row md:flex-row md:items-center gap-2 w-full">
             <Link
               href="/deploy"
-              className="sm:w-1/2 sm:text-center inline-block space-x-2 rounded px-4 py-1.5 md:py-2 text-base font-semibold leading-7 text-white  ring-1 ring-zinc-600 hover:bg-white hover:text-zinc-900 duration-150 hover:ring-white hover:drop-shadow-cta"
+              className={cn(
+                buttonVariants({
+                  size: 'lg',
+                }),
+                'w-full',
+              )}
             >
               Deploy
             </Link>
+
             <Link
               href="/share"
-              className="sm:w-1/2 sm:text-center inline-block transition-all space-x-2  rounded px-4 py-1.5 md:py-2 text-base font-semibold leading-7 text-zinc-800   bg-zinc-50 ring-1 ring-transparent hover:text-zinc-100 hover:ring-zinc-600/80  hover:bg-zinc-900/20 duration-150 hover:drop-shadow-cta"
+              className={cn(
+                buttonVariants({
+                  size: 'lg',
+                  variant: 'outline',
+                }),
+                'w-full',
+              )}
             >
-              <span>Share</span>
-              <span aria-hidden="true">&rarr;</span>
+              Share
             </Link>
           </div>
         </div>
-      </div>
-      <h2 className="py-4 text-3xl font-bold text-center text-zinc-300 ">Used and trusted by a growing community</h2>
-      <Stats />
+        <div className="relative min-h-[300px] col-span-12 mt-8 lg:col-span-7 lg:mt-0 xl:col-span-6 xl:col-start-7">
+          <HomeHero />
+        </div>
+        <Stats />
+      </SectionContainer>
     </div>
-  );
+  )
 }

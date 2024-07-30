@@ -2,7 +2,7 @@ import './globals.css'
 import { cn } from '@/lib/utils'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
-import { Header } from './header'
+import { Header } from '../components/header'
 
 import { Analytics } from '@/components/analytics'
 import { Footer } from '@/components/footer'
@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          'min-[100dvh] overscroll-none whitespace-pre-line font-sans !bg-alternative antialiased',
+          'min-[100dvh] overscroll-none whitespace-pre-line font-sans !bg-alternative antialiased flex min-h-screen flex-col',
           GeistSans.variable,
           GeistMono.variable,
         )}
@@ -28,8 +28,8 @@ export default function RootLayout({
         }
         <ThemeProvider attribute="class" defaultTheme={'light'} enableSystem>
           <Header />
-          <main>{children}</main>
-          <Footer />
+          <main className="flex-1">{children}</main>
+          <Footer className="border-t-[1px] border-border px-4 md:px-6 pt-10 md:pt-16 overflow-hidden max-h-[900px]" />
         </ThemeProvider>
       </body>
     </html>
